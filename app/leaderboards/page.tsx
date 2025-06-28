@@ -35,26 +35,21 @@ function useMediaQuery(query: string): boolean {
   return matches;
 }
 
-interface Member {
-  username: string;
-  _id: string;
-}
-
 export default function LeaderboardPage() {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
-    const fetchTeams = async () => {
+    const fetchUsers = async () => {
       try {
         const response = await fetch("/api/users/all");
         if (response.ok) {
           const data = await response.json();
-          const sortedTeams = data.sort(
-            (a: IUser, b: IUser) => b.score - a.score,
+          const sortedUsers = data.sort(
+            (a: IUser, b: IUser) => b.solves.length - a.solves.length,
           );
-          setTeams(sortedTeams);
+          setUsers(sortedUsers);
         }
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -63,8 +58,8 @@ export default function LeaderboardPage() {
       }
     };
 
-    fetchTeams();
-    const interval = setInterval(fetchTeams, 10000);
+    fetchUsers();
+    const interval = setInterval(fetchUsers, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -96,14 +91,14 @@ export default function LeaderboardPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {teams.map((team, index) => (
-                <TableRow key={team._id}>
+              {users.map((user: IUser, index) => (
+                <TableRow key={index}>
                   <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>
-                    <Link href={`/teams/${team._id}`}>{team.username}</Link>
+                    <Link href={`/teams/${user._id}`}>{user.username}</Link>
                   </TableCell>
                   <TableCell className="text-right">
-                    {team.solves.length}
+                    {user.solves.length}
                   </TableCell>
                 </TableRow>
               ))}
