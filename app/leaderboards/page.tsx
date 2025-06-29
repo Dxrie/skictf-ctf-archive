@@ -95,7 +95,7 @@ export default function LeaderboardPage() {
                 <TableRow key={index}>
                   <TableCell className="font-medium">{index + 1}</TableCell>
                   <TableCell>
-                    <Link href={`/teams/${user._id}`}>{user.username}</Link>
+                    <Link href={`/users/${user._id}`}>{user.username}</Link>
                   </TableCell>
                   <TableCell className="text-right">
                     {user.solves.length}
