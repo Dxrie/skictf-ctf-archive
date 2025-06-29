@@ -19,7 +19,6 @@ interface Challenge {
   _id: string;
   title: string;
   description: string;
-  points: number;
   difficulty: string;
   category: string;
   fileUrls: string[];
@@ -220,11 +219,10 @@ export default function ChallengePage() {
                   >
                     <DialogTrigger asChild>
                       <div
-                        className={`flex flex-col items-center justify-center p-6 rounded-lg shadow-lg space-y-3 hover:shadow-xl transition-shadow duration-200 cursor-pointer border ${
-                          challenge.isSolved
-                            ? "bg-green-100/10 border-green-500/50"
-                            : "bg-card"
-                        }`}
+                        className={`flex flex-col items-center justify-center p-6 rounded-lg shadow-lg space-y-3 hover:shadow-xl transition-shadow duration-200 cursor-pointer border ${challenge.isSolved
+                          ? "bg-green-100/10 border-green-500/50"
+                          : "bg-card"
+                          }`}
                         onClick={() => setSelectedChallenge(challenge)}
                       >
                         <div className="space-y-2">
@@ -234,15 +232,14 @@ export default function ChallengePage() {
                         </div>
                         <div className="flex flex-wrap gap-3 text-sm">
                           <span
-                            className={`px-2 py-1 rounded-full text-xs font-medium ${
-                              challenge.difficulty === "Easy"
-                                ? "bg-green-100/20 text-green-500"
-                                : challenge.difficulty === "Medium"
-                                  ? "bg-yellow-100/20 text-yellow-500"
-                                  : challenge.difficulty === "Hard"
-                                    ? "bg-orange-100/20 text-orange-500"
-                                    : "bg-red-100/20 text-red-500"
-                            }`}
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${challenge.difficulty === "Easy"
+                              ? "bg-green-100/20 text-green-500"
+                              : challenge.difficulty === "Medium"
+                                ? "bg-yellow-100/20 text-yellow-500"
+                                : challenge.difficulty === "Hard"
+                                  ? "bg-orange-100/20 text-orange-500"
+                                  : "bg-red-100/20 text-red-500"
+                              }`}
                           >
                             {challenge.difficulty}
                           </span>
@@ -289,20 +286,16 @@ export default function ChallengePage() {
                               )}
                             <div className="flex flex-wrap gap-3 text-sm items-center">
                               <span
-                                className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-                                  selectedChallenge.difficulty === "Easy"
-                                    ? "bg-green-100/20 text-green-500"
-                                    : selectedChallenge.difficulty === "Medium"
-                                      ? "bg-yellow-100/20 text-yellow-500"
-                                      : selectedChallenge.difficulty === "Hard"
-                                        ? "bg-orange-100/20 text-orange-500"
-                                        : "bg-red-100/20 text-red-500"
-                                }`}
+                                className={`px-3 py-1.5 rounded-full text-sm font-medium ${selectedChallenge.difficulty === "Easy"
+                                  ? "bg-green-100/20 text-green-500"
+                                  : selectedChallenge.difficulty === "Medium"
+                                    ? "bg-yellow-100/20 text-yellow-500"
+                                    : selectedChallenge.difficulty === "Hard"
+                                      ? "bg-orange-100/20 text-orange-500"
+                                      : "bg-red-100/20 text-red-500"
+                                  }`}
                               >
                                 {selectedChallenge.difficulty}
-                              </span>
-                              <span className="text-muted-foreground">
-                                {selectedChallenge.points} points
                               </span>
                               <span className="text-muted-foreground">
                                 Author: {selectedChallenge.author.username}
@@ -361,10 +354,10 @@ export default function ChallengePage() {
                                           prevChallenges.map((c) =>
                                             c._id === selectedChallenge._id
                                               ? {
-                                                  ...c,
-                                                  isSolved: true,
-                                                  solveCount: c.solveCount + 1,
-                                                }
+                                                ...c,
+                                                isSolved: true,
+                                                solveCount: c.solveCount + 1,
+                                              }
                                               : c,
                                           ),
                                         );
