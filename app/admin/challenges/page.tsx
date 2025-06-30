@@ -84,7 +84,7 @@ export default function AdminChallengePage() {
 
   const fetchChallenges = async () => {
     try {
-      const response = await fetch("/api/challenges");
+      const response = await fetch("/api/admin/challenges");
       if (response.ok) {
         const data = await response.json();
         setChallenges(data);

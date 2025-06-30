@@ -320,7 +320,7 @@ export default function ChallengePage() {
                                     setFlagInput(e.target.value);
                                     setFlagStatus("");
                                   }}
-                                  placeholder="SKICTF{...}"
+                                  placeholder="Flag"
                                   className="flex-1"
                                 />
                                 <Button
