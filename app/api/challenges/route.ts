@@ -11,6 +11,7 @@ export async function GET() {
     const session = await getServerSession(authOptions);
     await dbConnect();
     const challenges = await Challenge.find()
+      .select("_id author title description category fileUrls solves published difficulty")
       .populate("author", "username")
       .sort({ createdAt: -1 });
     const publish = await PublishModel.findOne({ publish: true });
