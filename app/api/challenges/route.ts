@@ -78,7 +78,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: error.message }, { status: 400 });
       }
     }
-    console.error("Create challenge error:", error); // Log the error for debugging purposes
+    console.error("Create challenge error:", error);
     return NextResponse.json(
       { message: "Failed to create challenge" },
       { status: 500 },
