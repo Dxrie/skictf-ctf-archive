@@ -26,8 +26,6 @@ export async function GET(
       );
     }
 
-    delete user.email;
-
     return NextResponse.json(user);
   } catch (err: unknown) {
     if (err instanceof Error) {
