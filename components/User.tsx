@@ -26,7 +26,9 @@ export default function User({ teamId }: { teamId: string }) {
       }
 
       setUser(data);
-      setSolved(data.solves);
+      const solves: [Challenge] = data.solves;
+      solves.reverse();
+      setSolved(solves);
     }
 
     fetchTeam();
