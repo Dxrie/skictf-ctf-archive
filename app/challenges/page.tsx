@@ -297,9 +297,7 @@ export default function ChallengePage() {
                               >
                                 {selectedChallenge.difficulty}
                               </span>
-                              <span className="text-muted-foreground">
-                                Author: {selectedChallenge.author.username}
-                              </span>
+
                               <span className="text-muted-foreground">
                                 Solved by {selectedChallenge.solves.length}{" "}
                                 player(s)
