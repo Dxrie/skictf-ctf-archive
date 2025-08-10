@@ -29,7 +29,7 @@ export async function POST(
       );
     }
 
-    const { flag } = await request.json();
+    const { flag }: { flag: string } = await request.json();
     if (!flag) {
       return NextResponse.json(
         { message: "Flag is required" },
@@ -37,7 +37,7 @@ export async function POST(
       );
     }
 
-    if (flag !== challenge.flag) {
+    if (flag.trim() !== challenge.flag) {
       return NextResponse.json({ message: "Incorrect flag" }, { status: 400 });
     }
 
