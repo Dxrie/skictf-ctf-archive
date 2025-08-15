@@ -12,6 +12,7 @@ export interface IUser extends mongoose.Document {
   verificationTokenExpires: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;
   solves: [];
+  hidden: boolean;
 }
 
 const userSchema = new mongoose.Schema<IUser>(
@@ -61,6 +62,10 @@ const userSchema = new mongoose.Schema<IUser>(
           ref: "Challenge",
         },
       ],
+    },
+    hidden: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true },
