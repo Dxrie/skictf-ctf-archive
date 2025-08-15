@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     if (!email || !password || !username) {
       return NextResponse.json(
         { message: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -25,12 +25,12 @@ export async function POST(req: Request) {
     if (existingUser) {
       return NextResponse.json(
         { message: "Email or username already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Generate verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationToken = crypto.randomBytes(32).toString("hex");
     const verificationTokenExpires = new Date();
     verificationTokenExpires.setHours(verificationTokenExpires.getHours() + 24);
 
@@ -41,29 +41,27 @@ export async function POST(req: Request) {
       username,
       verificationToken,
       verificationTokenExpires,
-      isVerified: false
+      isVerified: true,
     });
 
     // Send verification email
-    await sendVerificationEmail(email, verificationToken);
+    //await sendVerificationEmail(email, verificationToken);
 
     return NextResponse.json(
       { message: "User registered successfully", userId: user._id },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error: unknown) {
     console.error("Registration error:", error);
     if (error instanceof Error) {
       if (error.name === "ValidationError") {
-        return NextResponse.json(
-          { message: error.message },
-          { status: 400 }
-        );
+        return NextResponse.json({ message: error.message }, { status: 400 });
       }
     }
     return NextResponse.json(
       { message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
+
